@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auction Room – Reisbord Relics</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo"><img src="https://picsum.photos/seed/logo/60/60" alt="Logo" /><span>REISBORD RELICS</span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html" class="active">Auction</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="auction-room">
+      <div class="container">
+        <h2>🔨 Live Auction Simulation</h2>
+        <p class="sub-info">Bid on rare vintage finds — this is a working demo of our Whatnot experience!</p>
+
+        <div class="auction-card">
+          <div class="auction-item">
+            <img id="auctionImage" src="https://picsum.photos/seed/1/400/400" alt="Current Lot" />
+            <h3 id="auctionName">Victorian Brooch</h3>
+            <p class="material">9.925 Sterling Silver</p>
+          </div>
+          <div class="auction-controls">
+            <div class="bid-display">
+              <span>Current Bid:</span>
+              <span id="auctionPrice">$45.00</span>
+            </div>
+            <div class="timer-display">
+              <span>⏳ <span id="auctionTimer">15</span>s</span>
+            </div>
+            <button id="bidButton" class="cta-button">💰 Bid +$1</button>
+            <div id="soldOverlay" class="sold-overlay" style="display:none;">✅ SOLD!</div>
+          </div>
+        </div>
+
+        <p class="hint">* Placeholder demo. Every bid increases the price by $1-$5. When the timer hits 0, the lot sells!</p>
+        <a href="https://www.whatnot.com/user/reisbordrelics" target="_blank" class="secondary-btn">📺 Join the Real Show on Whatnot</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><p>&copy; 2026 Reisbord Relics – Outside Philadelphia, PA</p></div>
+  </footer>
+
+  <script>
+    // Auction Data
+    const items = [
+      { name: "Victorian Brooch", material: "9.925 Sterling", img: "https://picsum.photos/seed/1/400/400" },
+      { name: "Art Deco Ring", material: "14k Gold Fill", img: "https://picsum.photos/seed/2/400/400" },
+      { name: "Sterling Silver Necklace", material: "925 Silver", img: "https://picsum.photos/seed/3/400/400" },
+      { name: "Emerald Pendant", material: "Gold & Emerald", img: "https://picsum.photos/seed/4/400/400" },
+      { name: "Vintage Cufflinks", material: "Brass & Gold", img: "https://picsum.photos/seed/5/400/400" },
+      { name: "Art Nouveau Brooch", material: "Sterling Silver", img: "https://picsum.photos/seed/6/400/400" },
+      { name: "Gold Filled Bracelet", material: "Gold Filled", img: "https://picsum.photos/seed/7/400/400" }
+    ];
+
+    let currentItemIndex = 0;
+    let currentPrice = 45;
+    let timer = 15;
+    let intervalId = null;
+    let isSold = false;
+
+    const imgEl = document.getElementById('auctionImage');
+    const nameEl = document.getElementById('auctionName');
+    const priceEl = document.getElementById('auctionPrice');
+    const timerEl = document.getElementById('auctionTimer');
+    const bidBtn = document.getElementById('bidButton');
+    const soldOverlay = document.getElementById('soldOverlay');
+
+    function loadItem(index) {
+      const item = items[index % items.length];
+      imgEl.src = item.img;
+      nameEl.textContent = item.name;
+      document.querySelector('.material').textContent = item.material;
+      currentPrice = Math.floor(Math.random() * 30) + 25; // random starting price $25-55
+      priceEl.textContent = `$${currentPrice}.00`;
+      timer = 15;
+      timerEl.textContent = timer;
+      soldOverlay.style.display = 'none';
+      isSold = false;
+      bidBtn.disabled = false;
+      bidBtn.style.opacity = '1';
+    }
+
+    function startTimer() {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        timer -= 1;
+        timerEl.textContent = timer;
+        if (timer <= 0) {
+          clearInterval(intervalId);
+          intervalId = null;
+          // SOLD!
+          isSold = true;
+          soldOverlay.style.display = 'flex';
+          bidBtn.disabled = true;
+          bidBtn.style.opacity = '0.5';
+          // Load next item after 3 seconds
+          setTimeout(() => {
+            currentItemIndex += 1;
+            loadItem(currentItemIndex);
+            startTimer();
+          }, 2500);
+        }
+      }, 1000);
+    }
+
+    // Bid button
+    bidBtn.addEventListener('click', () => {
+      if (isSold) return;
+      const increment = Math.floor(Math.random() * 5) + 1; // $1 to $5
+      currentPrice += increment;
+      priceEl.textContent = `$${currentPrice}.00`;
+      // Reset timer to give more excitement
+      timer = Math.min(timer + 2, 15);
+      timerEl.textContent = timer;
+    });
+
+    // Init
+    loadItem(0);
+    startTimer();
+  </script>
+</body>
+</html>

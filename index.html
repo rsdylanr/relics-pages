@@ -3,94 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reisbord Relics</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Georgia', serif;
-      background: #1a1410;
-      color: #e8dccc;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 700px;
-      text-align: center;
-      background: #2a1f18;
-      padding: 3rem 2.5rem;
-      border-radius: 24px;
-      border: 1px solid #b8956a;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-    }
-    h1 {
-      font-size: 3.2rem;
-      letter-spacing: 4px;
-      color: #f5e3c4;
-      text-shadow: 0 0 10px #b8956a66;
-      margin-bottom: 0.25rem;
-    }
-    .tagline {
-      font-size: 1.2rem;
-      color: #c9ad93;
-      margin-bottom: 1.5rem;
-      border-top: 1px solid #b8956a44;
-      border-bottom: 1px solid #b8956a44;
-      padding: 0.75rem 0;
-    }
-    .description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin: 1.5rem 0;
-      color: #d6c4b2;
-    }
-    .cta-button {
-      display: inline-block;
-      background: #b8956a;
-      color: #1a1410;
-      padding: 0.9rem 2.4rem;
-      border-radius: 40px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: background 0.2s, transform 0.1s;
-      margin-top: 0.5rem;
-      border: none;
-      cursor: pointer;
-    }
-    .cta-button:hover {
-      background: #d4b083;
-      transform: scale(1.02);
-    }
-    .badge {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #a0846b;
-    }
-    .badge a {
-      color: #c9ad93;
-      text-decoration: none;
-      border-bottom: 1px dotted #c9ad9355;
-    }
-    .badge a:hover { border-bottom: 1px solid #c9ad93; }
-  </style>
+  <title>Reisbord Relics – Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>⚜️ REISBORD RELICS</h1>
-    <div class="tagline">Treasure hunting for the good stuff ✨</div>
-    <p class="description">
-      Vintage jewelry, sterling silver, and cool finds you won’t see every day.<br />
-      Come hang out, bid, and score some deals!
-    </p>
-    <a href="https://www.whatnot.com/user/reisbordrelics" target="_blank" class="cta-button">
-      📺 Watch on Whatnot
-    </a>
-    <div class="badge">
-      🏺 Antique jewelry &amp; sterling silver — curated by <strong>Isaac Reisbord</strong>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="https://picsum.photos/seed/logo/60/60" alt="Reisbord Relics Logo" />
+        <span>REISBORD RELICS</span>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Auction</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" style="background-image: url('https://picsum.photos/seed/hero/1600/600');">
+      <div class="container hero-content">
+        <h1>⚜️ REISBORD RELICS</h1>
+        <p class="tagline">Treasure hunting for the good stuff ✨</p>
+        <p class="mission">"Making timeless treasure affordable."</p>
+        <a href="https://www.whatnot.com/user/reisbordrelics" target="_blank" class="cta-button">📺 Watch Live on Whatnot</a>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER -->
+    <section class="countdown-section">
+      <div class="container">
+        <h2>⏳ Next Show Countdown</h2>
+        <div id="countdown" class="countdown-timer">
+          <span><span id="days">00</span>d</span>
+          <span><span id="hours">00</span>h</span>
+          <span><span id="minutes">00</span>m</span>
+          <span><span id="seconds">00</span>s</span>
+        </div>
+        <p class="countdown-label">Every Friday 8:00 PM EST</p>
+      </div>
+    </section>
+
+    <!-- FEATURED SNEAK PEEK -->
+    <section class="featured">
+      <div class="container">
+        <h2>✨ Featured Finds</h2>
+        <div class="item-grid">
+          <div class="item-card"><img src="https://picsum.photos/seed/1/300/300" alt="Victorian Brooch" /><p>Victorian Brooch</p><span>$45</span></div>
+          <div class="item-card"><img src="https://picsum.photos/seed/2/300/300" alt="Art Deco Ring" /><p>Art Deco Ring</p><span>$120</span></div>
+          <div class="item-card"><img src="https://picsum.photos/seed/3/300/300" alt="Sterling Necklace" /><p>Sterling Necklace</p><span>$85</span></div>
+        </div>
+        <a href="shop.html" class="secondary-btn">🚀 Enter the Auction Room</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Reisbord Relics – Outside Philadelphia, PA</p>
+      <p>📍 Treasure hunting for the good stuff.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Countdown to every Friday 8:00 PM EST
+    function getNextFriday() {
+      const now = new Date();
+      const day = now.getDay();
+      const diff = (day <= 5) ? (5 - day) : (12 - day);
+      const next = new Date(now);
+      next.setDate(now.getDate() + diff);
+      next.setHours(20, 0, 0, 0);
+      if (next < now) next.setDate(next.getDate() + 7);
+      return next;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const target = getNextFriday();
+      const diff = Math.max(0, target - now);
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
